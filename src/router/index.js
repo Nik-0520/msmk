@@ -81,7 +81,7 @@ const routes = [
   {
     path: '/my/setPass',
     name: 'setPass',
-    component: () => import('../views/setPass.vue'),
+    component: () => import('../views/MyChildren/setPass.vue'),
     meta:{
       title:'设置密码'
     },
@@ -89,7 +89,7 @@ const routes = [
   {
     path: '/my/setNewPass',
     name: 'setNewPass',
-    component: () => import('../views/setNewPass.vue'),
+    component: () => import('../views/MyChildren/setNewPass.vue'),
     meta:{
       title:'修改密码'
     },
@@ -97,7 +97,7 @@ const routes = [
   {
     path: '/my/info',
     name: 'info',
-    component: () => import('../views/info.vue'),
+    component: () => import('../views/MyChildren/info.vue'),
     meta:{
       title:'个人信息'
     },
@@ -105,20 +105,66 @@ const routes = [
   {
     path: '/my/setInfo',
     name: 'setInfo',
-    component: () => import('../views/setInfo.vue'),
+    component: () => import('../views/MyChildren/setInfo.vue'),
     meta:{
       title:'个人信息'
     },
   },
   {
+    path: '/my/concern',
+    name: 'concern',
+    component: () => import('../views/MyChildren/concern.vue'),
+    meta:{
+      title:'我的关注'
+    },
+  },
+  {
+    path: '/my/collect',
+    name: 'collect',
+    component: () => import('../views/MyChildren/collect.vue'),
+    meta:{
+      title:'我的收藏'
+    },
+  },
+  {
+    path: '/my/order',
+    name: 'order',
+    component: () => import('../views/MyChildren/order.vue'),
+    meta:{
+      title:'课程订单'
+    },
+  },
+  {
+    path: '/my/study',
+    name: 'study',
+    component: () => import('../views/MyChildren/study.vue'),
+    meta:{
+      title:'我的学习'
+    },
+  },
+  {
+    path: '/my/studyCalendar',
+    name: 'studyCalendar',
+    component: () => import('../views/MyChildren/studyCalendar.vue'),
+    meta:{
+      title:'学习日历'
+    },
+  },
+  {
     path: '/login',
     name: 'login',
-    component: () => import('../views/login.vue')
+    component: () => import('../views/login.vue'),
+    meta:{
+      title:'登录'
+    },
   },
   {
     path: '/smslogin',
     name: 'smslogin',
-    component: () => import('../views/smslogin.vue')
+    component: () => import('../views/smslogin.vue'),
+    meta:{
+      title:'验证码登录'
+    },
   },
   {
     path: '/search',

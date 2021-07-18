@@ -14,7 +14,7 @@
             <i class="iconfont icon-jinbi"></i>
             {{detail.price == 0?'免费':detail.price}}
           </span>
-          <i @click="setCollect(detail.id)" :class="flag?'iconfont icon-shoucang1 iconactive':'iconfont icon-shoucang1'"></i>
+          <i @click="setCollect(detail.id)" :class="detail.is_collect == 1?'iconfont icon-shoucang1 iconactive':'iconfont icon-shoucang1'"></i>
         </div>
         <div class="detail_zong">共{{detail.total_periods}}课 | {{detail.browse_num}}人已报名</div>
         <div class="detail_time">
@@ -93,25 +93,28 @@ export default {
       this.$router.back();
     },
     setCollect(id) {
-      if (this.flag) {
-        delCollect({ id, type: 1 }).then((res) => {
-          if (res.data.data == 1) {
-            this.flag = false;
-          }
+      if (this.detail.is_collect == 1) {
+        delCollect({ id: this.detail.collect_id, type: 1 }).then((res) => {
+          console.log(res);
+          this.getData();
         });
       } else {
         getCollect({ course_basis_id: id, type: 1 }).then((res) => {
-          this.flag = true
+          console.log(res);
+          this.getData();
         });
       }
     },
+    getData() {
+      getCourseInfo(this.$route.query.id).then((res) => {
+        console.log(res.data.data);
+        this.detail = res.data.data.info;
+        this.teachersData = res.data.data.teachers;
+      });
+    },
   },
   created() {
-    getCourseInfo(this.$route.query.id).then((res) => {
-      console.log(res.data.data);
-      this.detail = res.data.data.info;
-      this.teachersData = res.data.data.teachers;
-    });
+    this.getData();
   },
 };
 </script>

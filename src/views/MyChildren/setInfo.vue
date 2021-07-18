@@ -19,7 +19,7 @@
 
 <script>
 import { NavBar } from "vant";
-import { editUser, GetInfo } from "../utils/api/api";
+import { editUser, GetInfo } from "../../utils/api/api";
 export default {
   data() {
     return {

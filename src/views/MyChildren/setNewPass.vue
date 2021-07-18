@@ -24,7 +24,7 @@
 
 <script>
 import { NavBar, Field, Form, Button } from "vant";
-import { setPass , getSmsCode } from "../utils/api/api";
+import { setPass , getSmsCode } from "../../utils/api/api";
 export default {
   data() {
     return {

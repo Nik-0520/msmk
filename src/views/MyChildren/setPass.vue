@@ -12,7 +12,7 @@
 
 <script>
 import { NavBar, Field, Form, Button } from "vant";
-import { setPass } from "../utils/api/api";
+import { setPass } from "../../utils/api/api";
 export default {
   data() {
     return {

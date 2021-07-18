@@ -73,7 +73,7 @@
 
 <script>
 import { NavBar, Area, Popup, DatetimePicker, Uploader } from "vant";
-import { GetInfo, getCaty, editUser, avatar } from "../utils/api/api";
+import { GetInfo, getCaty, editUser, avatar } from "../../utils/api/api";
 export default {
   data() {
     return {

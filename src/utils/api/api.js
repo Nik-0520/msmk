@@ -94,6 +94,41 @@ const avatar = (data)=>Request({ //获取个人中心数据
     method:'post',
     data:data,
 })
+const getCollectAll = (data)=>Request({ //我的关注
+    url:`/api/collect`,
+    method:'get',
+    params:data,
+})
+const putCollect = (data)=>Request({ //我的关注取消关注
+    url:`/api/collect/cancel/${data.id}/${data.type}`,
+    method:'put',
+    data:data,
+})
+const myStudy = (data)=>Request({ //我的学习
+    url:`/api/myStudy/${data}`,
+    method:'get',
+    data:data,
+})
+const myrili = (data)=>Request({ //查看当天课程内容
+    url:`/api/study/live/${data}`,
+    method:'get',
+    data:data,
+})
+const myrlistudy = (data)=>Request({ //查看当月的学习日历
+    url:`/api/study/schedule?date=${data}`,
+    method:'get',
+    data:data,
+})
+const getRoom = (data)=>Request({ //我查看当天课程内容
+    url:`/api/oto/getLiveRoomCode/${data}/0`,
+    method:'get',
+    data:data,
+})
+const getRoomCode = (data)=>Request({ //我查看当天课程内容
+    url:`/api/getPcRoomCode/course_id=${data.id}/chapter_id=${data.chapterID}`,
+    method:'get',
+    data:data,
+})
 
 export {
     getBanner,
@@ -112,5 +147,12 @@ export {
     avatar,
     setCollect,
     getCollect,
-    delCollect
+    delCollect,
+    getCollectAll,
+    putCollect,
+    myStudy,
+    myrili,
+    myrlistudy,
+    getRoom,
+    getRoomCode
 }

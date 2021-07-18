@@ -17,7 +17,7 @@
         </div>
         <div class="hander_mine">
           <ul>
-            <li v-for="(item,index) in mineList" :key="index">
+            <li v-for="(item,index) in mineList" :key="index" @click="tostudy(index)">
               <div class="count">{{item.count}}</div>
               <div class="name">{{item.name}}</div>
               <div class="note">{{item.note}}</div>
@@ -40,24 +40,12 @@
     </div>
     <div class="menu_box">
       <ul>
-        <li>
-          <p class="title">课程相关</p>
+        <li v-for="(item,index) in navData" :key="index">
+          <p class="title">{{item.title}}</p>
           <div class="item-box">
-            <div class="item" @click="toSetnewPass('/my/setNewPass')">
-              <img src="/images/设置1.png" alt />
-              <p>设置</p>
-            </div>
-            <div class="item">
-              <img src="/images/设置1.png" alt />
-              <p>设置</p>
-            </div>
-            <div class="item">
-              <img src="/images/设置1.png" alt />
-              <p>设置</p>
-            </div>
-            <div class="item">
-              <img src="/images/设置1.png" alt />
-              <p>设置</p>
+            <div class="item" v-for="elem in item.children" :key="elem.id" @click="toMychildren(elem.route)">
+              <img :src="elem.icon" alt />
+              <p>{{elem.text}}</p>
             </div>
           </div>
         </li>
@@ -95,15 +83,124 @@ export default {
           url: "MyCurrency",
         },
       ],
+      navData: [
+        {
+          title: "课程相关",
+          children: [
+            {
+              icon: "/images/关注的老师.png",
+              text: "关注的老师",
+              route: "/my/concern",
+              id: Math.random(),
+            },
+            {
+              icon: "/images/我的收藏.png",
+              text: "我的收藏",
+              route: "/my/collect",
+              id: Math.random(),
+            },
+          ],
+        },
+        {
+          title: "客服相关",
+          children: [
+            {
+              icon: "/images/订单.png",
+              text: "课程订单",
+              route: "/my/order",
+              id: Math.random(),
+            },
+            {
+              icon: "/images/订单.png",
+              text: "会员订单",
+              route: "/",
+              id: Math.random(),
+            },
+            {
+              icon: "/images/订单.png",
+              text: "约课订单",
+              route: "/",
+              id: Math.random(),
+            },
+          ],
+        },
+        {
+          title: "我的账户",
+          children: [
+            {
+              icon: "/images/优惠券.png",
+              text: "优惠券",
+              route: "/",
+              id: Math.random(),
+            },
+            {
+              icon: "/images/学习卡.png",
+              text: "学习卡",
+              route: "/",
+              id: Math.random(),
+            },
+            {
+              icon: "/images/会员.png",
+              text: "会员",
+              route: "/",
+              id: Math.random(),
+            },
+          ],
+        },
+        {
+          title: "自助服务",
+          children: [
+            {
+              icon: "/images/我的消息.png",
+              text: "我的消息",
+              route: "/",
+              id: Math.random(),
+            },
+            {
+              icon: "/images/意见反馈.png",
+              text: "意见反馈",
+              route: "/",
+              id: Math.random(),
+            },
+            {
+              icon: "/images/在线客服.png",
+              text: "在线客服",
+              route: "/",
+              id: Math.random(),
+            },
+            {
+              icon: "/images/设置1.png",
+              text: "设置",
+              route: "/my/setNewPass",
+              id: Math.random(),
+            },
+          ],
+        },
+      ],
     };
   },
   methods: {
-    toSetnewPass(path) {
-      this.$router.push(path)
+    toMychildren(path) {
+      if (path == "/my/order") {
+        console.log(1);
+        this.$router.push({
+          path,
+          query: {
+            order_type: 2,
+          },
+        });
+      } else {
+        this.$router.push(path);
+      }
     },
-    toInfo(){
-      this.$router.push('/my/info')
-    }
+    toInfo() {
+      this.$router.push("/my/info");
+    },
+    tostudy(index) {
+      if (index == 0) {
+        this.$router.push("/my/study");
+      }
+    },
   },
   created() {
     GetuserInfo().then((res) => {
@@ -121,6 +218,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #fff;
+  padding-bottom: 100px;
   .my_header {
     width: 100%;
     height: 218px;
@@ -271,6 +369,7 @@ export default {
       width: 100%;
       list-style: none;
       li {
+        border-bottom: 1px solid #eee;
         .title {
           font-size: 16px;
         }
@@ -279,16 +378,16 @@ export default {
           display: flex;
           flex-wrap: wrap;
           width: 100%;
-          .item{
+          .item {
             width: 25%;
             text-align: center;
             margin-bottom: 10px;
-            img{
+            img {
               width: 20px;
               height: 20px;
               margin-bottom: 6px;
             }
-            p{
+            p {
               margin: 0;
             }
           }
